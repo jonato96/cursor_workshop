@@ -16,7 +16,7 @@ export function SiteHeader() {
           </Link>
 
           <nav
-            className="hidden min-w-0 flex-1 items-center justify-center gap-6 md:flex"
+            className="hidden min-w-0 flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-1 md:flex"
             aria-label="Principal"
           >
             {nav.links.map((item) => (

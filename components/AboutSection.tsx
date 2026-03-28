@@ -2,55 +2,53 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { content } from "@/constants/content";
+import { SectionShell } from "@/components/SectionShell";
 
 export function AboutSection() {
   const { about } = content;
   const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      id="about"
-      aria-labelledby="about-heading"
-      className="border-b border-zinc-200/80 bg-white py-16 sm:py-20"
-    >
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="grid gap-10 md:grid-cols-2 md:items-start md:gap-16 lg:gap-20">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+    <SectionShell id="about" ariaLabelledBy="about-heading" tone="white">
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <motion.div
+          className="lg:col-span-5"
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-600">
+            {about.title}
+          </p>
+          <h2
+            id="about-heading"
+            className="mt-4 text-3xl font-semibold leading-snug tracking-tight text-zinc-900 sm:text-4xl"
           >
-            <h2
-              id="about-heading"
-              className="text-sm font-semibold uppercase tracking-wider text-indigo-600"
-            >
-              {about.title}
-            </h2>
-            <p className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
-              {about.lead}
-            </p>
-          </motion.div>
+            {about.lead}
+          </h2>
+        </motion.div>
 
-          <motion.div
-            className="max-w-prose space-y-5 text-base leading-relaxed text-zinc-600 md:pt-8"
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.45,
-              delay: reduceMotion ? 0 : 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            <p>{about.body}</p>
-            <div className="rounded-2xl border border-zinc-200/90 bg-zinc-50/80 px-5 py-4 text-sm text-zinc-700">
-              <p className="font-medium text-zinc-900">{about.calloutTitle}</p>
-              <p className="mt-1">{about.calloutBody}</p>
-            </div>
-          </motion.div>
-        </div>
+        <motion.div
+          className="lg:col-span-6 lg:col-start-7"
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{
+            duration: reduceMotion ? 0 : 0.45,
+            delay: reduceMotion ? 0 : 0.06,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          <p className="max-w-prose text-lg leading-relaxed text-zinc-600">{about.body}</p>
+          <aside className="mt-10 border-l-2 border-indigo-600 pl-6">
+            <p className="text-sm font-semibold text-zinc-900">{about.calloutTitle}</p>
+            <p className="mt-2 max-w-prose text-sm leading-relaxed text-zinc-600">
+              {about.calloutBody}
+            </p>
+          </aside>
+        </motion.div>
       </div>
-    </section>
+    </SectionShell>
   );
 }
